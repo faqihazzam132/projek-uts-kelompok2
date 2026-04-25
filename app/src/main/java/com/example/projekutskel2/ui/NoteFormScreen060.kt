@@ -7,29 +7,29 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.projekutskel2.data.Note060
+import com.example.projekutskel2.data.Note133
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.*
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NoteFormScreen060(
-    viewModel_060: NoteViewModel060,
-    userId_060: Int,
-    noteId_060: Int?,
-    onBack_060: () -> Unit
+fun NoteFormScreen133(
+    viewModel_133: NoteViewModel039,
+    userId_133: Int,
+    noteId_133: Int?,
+    onBack_133: () -> Unit
 ) {
-    var judul_060 by remember { mutableStateOf("") }
-    var isi_060 by remember { mutableStateOf("") }
-    val scope_060 = rememberCoroutineScope()
+    var judul_133 by remember { mutableStateOf("") }
+    var isi_133 by remember { mutableStateOf("") }
+    val scope_133 = rememberCoroutineScope()
     
-    LaunchedEffect(noteId_060) {
-        if (noteId_060 != null && noteId_060 != -1) {
-            val note_060 = viewModel_060.getNoteById_060(noteId_060)
-            if (note_060 != null) {
-                judul_060 = note_060.judul_060
-                isi_060 = note_060.isi_060
+    LaunchedEffect(noteId_133) {
+        if (noteId_133 != null && noteId_133 != -1) {
+            val note_133 = viewModel_133.getNoteById_039(noteId_133)
+            if (note_133 != null) {
+                judul_133 = note_133.judul_133
+                isi_133 = note_133.isi_133
             }
         }
     }
@@ -37,60 +37,60 @@ fun NoteFormScreen060(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(if (noteId_060 == null || noteId_060 == -1) "Tambah Catatan 060" else "Edit Catatan 060") },
+                title = { Text(if (noteId_133 == null || noteId_133 == -1) "Tambah Catatan" else "Edit Catatan") },
                 navigationIcon = {
-                    IconButton(onClick = onBack_060) {
+                    IconButton(onClick = onBack_133) {
                         Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = "Kembali")
                     }
                 }
             )
         }
-    ) { innerPadding_060 ->
+    ) { innerPadding_133 ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding_060)
+                .padding(innerPadding_133)
                 .padding(16.dp)
         ) {
             OutlinedTextField(
-                value = judul_060,
-                onValueChange = { judul_060 = it },
+                value = judul_133,
+                onValueChange = { judul_133 = it },
                 label = { Text("Judul") },
                 modifier = Modifier.fillMaxWidth()
             )
             Spacer(modifier = Modifier.height(8.dp))
             OutlinedTextField(
-                value = isi_060,
-                onValueChange = { isi_060 = it },
+                value = isi_133,
+                onValueChange = { isi_133 = it },
                 label = { Text("Isi Catatan") },
                 modifier = Modifier.fillMaxWidth().weight(1f)
             )
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                    if (judul_060.isNotEmpty() && isi_060.isNotEmpty()) {
-                        val date_060 = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
-                        if (noteId_060 == null || noteId_060 == -1) {
-                            viewModel_060.insertNote_060(
-                                Note060(
-                                    user_id_060 = userId_060,
-                                    judul_060 = judul_060,
-                                    isi_060 = isi_060,
-                                    tanggal_060 = date_060
+                    if (judul_133.isNotEmpty() && isi_133.isNotEmpty()) {
+                        val date_133 = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault()).format(Date())
+                        if (noteId_133 == null || noteId_133 == -1) {
+                            viewModel_133.insertNote_039(
+                                Note133(
+                                    user_id_046 = userId_133,
+                                    judul_133 = judul_133,
+                                    isi_133 = isi_133,
+                                    tanggal_133 = date_133
                                 )
                             )
                         } else {
-                            viewModel_060.updateNote_060(
-                                Note060(
-                                    id_060 = noteId_060,
-                                    user_id_060 = userId_060,
-                                    judul_060 = judul_060,
-                                    isi_060 = isi_060,
-                                    tanggal_060 = date_060
+                            viewModel_133.updateNote_039(
+                                Note133(
+                                    id_133 = noteId_133,
+                                    user_id_046 = userId_133,
+                                    judul_133 = judul_133,
+                                    isi_133 = isi_133,
+                                    tanggal_133 = date_133
                                 )
                             )
                         }
-                        onBack_060()
+                        onBack_133()
                     }
                 },
                 modifier = Modifier.fillMaxWidth()

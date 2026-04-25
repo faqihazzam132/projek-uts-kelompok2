@@ -3,50 +3,48 @@ package com.example.projekutskel2.ui
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.projekutskel2.data.AppDatabase060
-import com.example.projekutskel2.data.Note060
-import com.example.projekutskel2.data.User060
+import com.example.projekutskel2.data.AppDatabase078
+import com.example.projekutskel2.data.Note133
+import com.example.projekutskel2.data.User046
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class NoteViewModel060(application: Application) : AndroidViewModel(application) {
-    private val database_060 = AppDatabase060.getDatabase(application)
-    private val userDao_060 = database_060.userDao060()
-    private val noteDao_060 = database_060.noteDao060()
+class NoteViewModel039(application: Application) : AndroidViewModel(application) {
+    private val database_039 = AppDatabase078.getDatabase(application)
+    private val userDao_039 = database_039.userDao046()
+    private val noteDao_039 = database_039.noteDao133()
 
-    suspend fun register_060(user: User060) {
-        userDao_060.insertUser_060(user)
+    suspend fun register_039(user: User046) {
+        userDao_039.insertUser_046(user)
     }
 
-    suspend fun login_060(username: String): User060? {
-        return userDao_060.getUserByUsername_060(username)
+    suspend fun login_039(username: String): User046? {
+        return userDao_039.getUserByUsername_046(username)
     }
 
-    fun getNotes_060(userId: Int): Flow<List<Note060>> {
-        return noteDao_060.getAllNotesByUser_060(userId)
+    fun getNotes_039(userId: Int): Flow<List<Note133>> {
+        return noteDao_039.getAllNotesByUser_133(userId)
     }
 
-    fun insertNote_060(note: Note060) {
+    fun insertNote_039(note: Note133) {
         viewModelScope.launch {
-            noteDao_060.insertNote_060(note)
+            noteDao_039.insertNote_133(note)
         }
     }
 
-    fun updateNote_060(note: Note060) {
+    fun updateNote_039(note: Note133) {
         viewModelScope.launch {
-            noteDao_060.updateNote_060(note)
+            noteDao_039.updateNote_133(note)
         }
     }
 
-    fun deleteNote_060(note: Note060) {
+    fun deleteNote_039(note: Note133) {
         viewModelScope.launch {
-            noteDao_060.deleteNote_060(note)
+            noteDao_039.deleteNote_133(note)
         }
     }
     
-    suspend fun getNoteById_060(noteId: Int): Note060? {
-        return noteDao_060.getNoteById_060(noteId)
+    suspend fun getNoteById_039(noteId: Int): Note133? {
+        return noteDao_039.getNoteById_133(noteId)
     }
 }

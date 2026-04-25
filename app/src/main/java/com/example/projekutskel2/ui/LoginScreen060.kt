@@ -11,49 +11,49 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 
 @Composable
-fun LoginScreen060(
-    viewModel_060: NoteViewModel060,
-    onLoginSuccess_060: (Int, String) -> Unit,
-    onNavigateToRegister_060: () -> Unit
+fun LoginScreen046(
+    viewModel_046: NoteViewModel039,
+    onLoginSuccess_046: (Int, String) -> Unit,
+    onNavigateToRegister_046: () -> Unit
 ) {
-    var username_060 by remember { mutableStateOf("") }
-    var password_060 by remember { mutableStateOf("") }
-    var error_060 by remember { mutableStateOf("") }
-    val scope_060 = rememberCoroutineScope()
+    var username_046 by remember { mutableStateOf("") }
+    var password_046 by remember { mutableStateOf("") }
+    var error_046 by remember { mutableStateOf("") }
+    val scope_046 = rememberCoroutineScope()
 
     Column(
         modifier = Modifier.fillMaxSize().padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Text("Login Catatan 060", fontSize = 24.sp, modifier = Modifier.padding(bottom = 32.dp))
+        Text("Login Catatan", fontSize = 24.sp, modifier = Modifier.padding(bottom = 32.dp))
 
         OutlinedTextField(
-            value = username_060,
-            onValueChange = { username_060 = it },
+            value = username_046,
+            onValueChange = { username_046 = it },
             label = { Text("Username") },
             modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(8.dp))
         OutlinedTextField(
-            value = password_060,
-            onValueChange = { password_060 = it },
+            value = password_046,
+            onValueChange = { password_046 = it },
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
             modifier = Modifier.fillMaxWidth()
         )
-        if (error_060.isNotEmpty()) {
-            Text(error_060, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(top = 8.dp))
+        if (error_046.isNotEmpty()) {
+            Text(error_046, color = MaterialTheme.colorScheme.error, modifier = Modifier.padding(top = 8.dp))
         }
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
-                scope_060.launch {
-                    val user_060 = viewModel_060.login_060(username_060)
-                    if (user_060 != null && user_060.password_060 == password_060) {
-                        onLoginSuccess_060(user_060.id_060, user_060.username_060)
+                scope_046.launch {
+                    val user_046 = viewModel_046.login_039(username_046)
+                    if (user_046 != null && user_046.password_046 == password_046) {
+                        onLoginSuccess_046(user_046.id_046, user_046.username_046)
                     } else {
-                        error_060 = "Username atau Password salah"
+                        error_046 = "Username atau Password salah"
                     }
                 }
             },
@@ -61,7 +61,7 @@ fun LoginScreen060(
         ) {
             Text("Login")
         }
-        TextButton(onClick = onNavigateToRegister_060) {
+        TextButton(onClick = onNavigateToRegister_046) {
             Text("Belum punya akun? Register")
         }
     }

@@ -12,12 +12,12 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.projekutskel2.data.PreferencesManager060
-import com.example.projekutskel2.ui.DashboardScreen060
-import com.example.projekutskel2.ui.LoginScreen060
-import com.example.projekutskel2.ui.NoteFormScreen060
-import com.example.projekutskel2.ui.NoteViewModel060
-import com.example.projekutskel2.ui.RegisterScreen060
+import com.example.projekutskel2.data.PreferencesManager139
+import com.example.projekutskel2.ui.DashboardScreen039
+import com.example.projekutskel2.ui.LoginScreen046
+import com.example.projekutskel2.ui.NoteFormScreen133
+import com.example.projekutskel2.ui.NoteViewModel039
+import com.example.projekutskel2.ui.RegisterScreen133
 import com.example.projekutskel2.ui.theme.ProjekUTSKel2Theme
 
 class MainActivity : ComponentActivity() {
@@ -36,42 +36,42 @@ class MainActivity : ComponentActivity() {
 fun AppNavigation() {
     val navController = rememberNavController()
     val context = androidx.compose.ui.platform.LocalContext.current
-    val preferences = remember { PreferencesManager060(context) }
-    val viewModel: NoteViewModel060 = viewModel()
+    val preferences = remember { PreferencesManager139(context) }
+    val viewModel: NoteViewModel039 = viewModel()
 
-    val startDestination = if (preferences.getUserId_060() != -1) "dashboard" else "login"
+    val startDestination = if (preferences.getUserId_139() != -1) "dashboard" else "login"
 
     NavHost(navController = navController, startDestination = startDestination) {
         composable("login") {
-            LoginScreen060(
-                viewModel_060 = viewModel,
-                onLoginSuccess_060 = { userId, username ->
-                    preferences.saveUserSession_060(userId, username)
+            LoginScreen046(
+                viewModel_046 = viewModel,
+                onLoginSuccess_046 = { userId, username ->
+                    preferences.saveUserSession_139(userId, username)
                     navController.navigate("dashboard") {
                         popUpTo("login") { inclusive = true }
                     }
                 },
-                onNavigateToRegister_060 = { navController.navigate("register") }
+                onNavigateToRegister_046 = { navController.navigate("register") }
             )
         }
         composable("register") {
-            RegisterScreen060(
-                viewModel_060 = viewModel,
-                onRegisterSuccess_060 = {
+            RegisterScreen133(
+                viewModel_133 = viewModel,
+                onRegisterSuccess_133 = {
                     navController.navigate("login") {
                         popUpTo("register") { inclusive = true }
                     }
                 },
-                onNavigateToLogin_060 = { navController.navigate("login") }
+                onNavigateToLogin_133 = { navController.navigate("login") }
             )
         }
         composable("dashboard") {
-            DashboardScreen060(
-                viewModel_060 = viewModel,
-                preferences_060 = preferences,
-                onAddNote_060 = { navController.navigate("note_form/-1") },
-                onEditNote_060 = { noteId -> navController.navigate("note_form/$noteId") },
-                onLogout_060 = {
+            DashboardScreen039(
+                viewModel_039 = viewModel,
+                preferences_139 = preferences,
+                onAddNote_039 = { navController.navigate("note_form/-1") },
+                onEditNote_039 = { noteId -> navController.navigate("note_form/$noteId") },
+                onLogout_039 = {
                     navController.navigate("login") {
                         popUpTo("dashboard") { inclusive = true }
                     }
@@ -83,11 +83,11 @@ fun AppNavigation() {
             arguments = listOf(navArgument("noteId") { type = NavType.IntType })
         ) { backStackEntry ->
             val noteId = backStackEntry.arguments?.getInt("noteId") ?: -1
-            NoteFormScreen060(
-                viewModel_060 = viewModel,
-                userId_060 = preferences.getUserId_060(),
-                noteId_060 = noteId,
-                onBack_060 = { navController.popBackStack() }
+            NoteFormScreen133(
+                viewModel_133 = viewModel,
+                userId_133 = preferences.getUserId_139(),
+                noteId_133 = noteId,
+                onBack_133 = { navController.popBackStack() }
             )
         }
     }

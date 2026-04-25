@@ -5,29 +5,29 @@ import androidx.room.PrimaryKey
 import androidx.room.ForeignKey
 import androidx.room.Index
 
-@Entity(tableName = "table_user_060")
-data class User060(
-    @PrimaryKey(autoGenerate = true) val id_060: Int = 0,
-    val username_060: String,
-    val password_060: String
+@Entity(tableName = "table_user_046")
+data class User046(
+    @PrimaryKey(autoGenerate = true) val id_046: Int = 0,
+    val username_046: String,
+    val password_046: String
 )
 
 @Entity(
-    tableName = "table_note_060",
+    tableName = "table_note_133",
     foreignKeys = [
         ForeignKey(
-            entity = User060::class,
-            parentColumns = ["id_060"],
-            childColumns = ["user_id_060"],
+            entity = User046::class,
+            parentColumns = ["id_046"],
+            childColumns = ["user_id_046"],
             onDelete = ForeignKey.CASCADE
         )
     ],
-    indices = [Index(value = ["user_id_060"])]
+    indices = [Index(value = ["user_id_046"])]
 )
-data class Note060(
-    @PrimaryKey(autoGenerate = true) val id_060: Int = 0,
-    val user_id_060: Int,
-    val judul_060: String,
-    val isi_060: String,
-    val tanggal_060: String
+data class Note133(
+    @PrimaryKey(autoGenerate = true) val id_133: Int = 0,
+    val user_id_046: Int,
+    val judul_133: String,
+    val isi_133: String,
+    val tanggal_133: String
 )

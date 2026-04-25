@@ -14,30 +14,30 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.projekutskel2.data.Note060
-import com.example.projekutskel2.data.PreferencesManager060
+import com.example.projekutskel2.data.Note133
+import com.example.projekutskel2.data.PreferencesManager139
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DashboardScreen060(
-    viewModel_060: NoteViewModel060,
-    preferences_060: PreferencesManager060,
-    onAddNote_060: () -> Unit,
-    onEditNote_060: (Int) -> Unit,
-    onLogout_060: () -> Unit
+fun DashboardScreen039(
+    viewModel_039: NoteViewModel039,
+    preferences_139: PreferencesManager139,
+    onAddNote_039: () -> Unit,
+    onEditNote_039: (Int) -> Unit,
+    onLogout_039: () -> Unit
 ) {
-    val userId_060 = preferences_060.getUserId_060()
-    val username_060 = preferences_060.getUsername_060() ?: "User"
-    val notes_060 by viewModel_060.getNotes_060(userId_060).collectAsState(initial = emptyList())
+    val userId_139 = preferences_139.getUserId_139()
+    val username_139 = preferences_139.getUsername_139() ?: "User"
+    val notes_133 by viewModel_039.getNotes_039(userId_139).collectAsState(initial = emptyList())
 
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Catatan 060 - $username_060") },
+                title = { Text("Catatan - $username_139") },
                 actions = {
                     IconButton(onClick = {
-                        preferences_060.clearSession_060()
-                        onLogout_060()
+                        preferences_139.clearSession_139()
+                        onLogout_039()
                     }) {
                         Icon(Icons.Default.ExitToApp, contentDescription = "Logout")
                     }
@@ -45,22 +45,22 @@ fun DashboardScreen060(
             )
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = onAddNote_060) {
+            FloatingActionButton(onClick = onAddNote_039) {
                 Icon(Icons.Default.Add, contentDescription = "Tambah Catatan")
             }
         }
-    ) { innerPadding_060 ->
+    ) { innerPadding_039 ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding_060)
+                .padding(innerPadding_039)
                 .padding(8.dp)
         ) {
-            items(notes_060) { note_060 ->
-                NoteItem060(
-                    note_060 = note_060,
-                    onEdit_060 = { onEditNote_060(note_060.id_060) },
-                    onDelete_060 = { viewModel_060.deleteNote_060(note_060) }
+            items(notes_133) { note_133 ->
+                NoteItem039(
+                    note_133 = note_133,
+                    onEdit_133 = { onEditNote_039(note_133.id_133) },
+                    onDelete_133 = { viewModel_039.deleteNote_039(note_133) }
                 )
             }
         }
@@ -68,29 +68,29 @@ fun DashboardScreen060(
 }
 
 @Composable
-fun NoteItem060(
-    note_060: Note060,
-    onEdit_060: () -> Unit,
-    onDelete_060: () -> Unit
+fun NoteItem039(
+    note_133: Note133,
+    onEdit_133: () -> Unit,
+    onDelete_133: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 4.dp)
-            .clickable { onEdit_060() },
+            .clickable { onEdit_133() },
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                Text(text = note_060.judul_060, fontWeight = FontWeight.Bold, fontSize = 18.sp)
-                IconButton(onClick = onDelete_060, modifier = Modifier.size(24.dp)) {
+                Text(text = note_133.judul_133, fontWeight = FontWeight.Bold, fontSize = 18.sp)
+                IconButton(onClick = onDelete_133, modifier = Modifier.size(24.dp)) {
                     Icon(Icons.Default.Delete, contentDescription = "Hapus", tint = MaterialTheme.colorScheme.error)
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-            Text(text = note_060.isi_060, maxLines = 2)
+            Text(text = note_133.isi_133, maxLines = 2)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(text = note_060.tanggal_060, fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary)
+            Text(text = note_133.tanggal_133, fontSize = 12.sp, color = MaterialTheme.colorScheme.secondary)
         }
     }
 }
